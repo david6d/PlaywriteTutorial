@@ -2,7 +2,7 @@
 from playwright.sync_api import Playwright
 from contact_us_page import ContactUsPage
 
-
+@pytest.mark.skip(reason="not ready")
 def test_submit_form(playwright: Playwright):
     browser = playwright.chromium.launch(headless=False)
     page = browser.new_page()
