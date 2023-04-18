@@ -1,4 +1,4 @@
-
+import pytest
 from playwright.sync_api import Playwright
 from contact_us_page import ContactUsPage
 
@@ -11,5 +11,3 @@ def test_submit_form(playwright: Playwright):
     contact_us.submit_form("David", "123 Main", "david@gmail.com", "444555888", "test subject", "automatic test")
 
 
-# with sync_playwright() as playwright:
-#     test_submit_form(playwright)
