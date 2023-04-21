@@ -2,6 +2,9 @@ import pytest
 import time
 from playwright.sync_api import Playwright
 
+import utils.secret_config
+
+
 @pytest.fixture(scope="session")
 def set_up(browser):
     # browser = playwright.chromium.launch(headless=False)
@@ -36,7 +39,7 @@ def login_set_up(set_up):
     # page.locator("input:below(:text('Email'))").fill("pemake5422@mustbeit.com") CSS does not work may be on this page
     page.locator(":nth-match(input[type=email], 2)").fill("pemake5422@mustbeit.com")  # selectors
     # page.get_by_test_id("emailAuth").get_by_label("Email").press("Enter")
-    page.get_by_label("Password").fill("simson", timeout=2000)
+    page.get_by_label("Password").fill(utils.secret_config.PASSWORD, timeout=2000)
     page.get_by_label("Password").press("Enter")
 
     yield page
