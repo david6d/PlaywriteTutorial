@@ -3,7 +3,13 @@ import pytest
 import time
 #from playwright.sync_api import Playwright
 
-#import utils.secret_config
+
+
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import utils.secret_config
+    PASSWORD = utils.secret_config.PASSWORD
 
 
 @pytest.fixture(scope="session")
@@ -40,8 +46,7 @@ def login_set_up(set_up):
     # page.locator("input:below(:text('Email'))").fill("pemake5422@mustbeit.com") CSS does not work may be on this page
     page.locator(":nth-match(input[type=email], 2)").fill("pemake5422@mustbeit.com")  # selectors
     # page.get_by_test_id("emailAuth").get_by_label("Email").press("Enter")
-    #page.get_by_label("Password").fill(utils.secret_config.PASSWORD, timeout=2000)
-    page.get_by_label("Password").fill(os.environ['PASSWORD'], timeout=2000)
+    page.get_by_label("Password").fill(PASSWORD, timeout=2000)
     page.get_by_label("Password").press("Enter")
 
     yield page
